@@ -81,7 +81,7 @@ body {
 
 .wrapper {
   width: 100%;
-  max-width: 1440px;
+  max-width: 90rem;
   margin: 0 auto;
 }
 
@@ -125,13 +125,15 @@ body {
 .nav {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
   padding: var(--spacing-s) var(--spacing-base);
   display: flex;
   align-items: center;
   z-index: 9999;
-  /* background-color: black; */
   transition: background-color 0.5s ease;
 }
 
@@ -206,7 +208,7 @@ body {
 
 .carousel__container {
   display: flex;
-  transition: transform 0.5s ease;
+  transition: transform 1s ease-in;
 }
 
 .slide {
