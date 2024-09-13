@@ -37,29 +37,31 @@ navLinks.forEach((link) => {
 });
 
 const slides = document.querySelectorAll('.slide');
-let currentSlide = 0;
+const nextSlideBtn = document.getElementById('next-slide-btn');
+const prevSlideBtn = document.getElementById('prev-slide-btn');
+const totalSlides = slides.length;
+let currentIndex = 0;
 
-const showSlide = (index) => {
-  slides.forEach((slide, i) => {
-    slide.classList.remove('slide--active');
-    if (i === index) {
-      slide.classList.add('slide--active');
-    }
-  });
-};
+function showSlide(index) {
+  const slideWidth = slides[0].clientWidth;
+  const carouselContainer = document.querySelector('.carousel__container');
+  carouselContainer.style.transform = `translateX(-${index * slideWidth}px)`;
+}
 
-const nextSlide = () => {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
-};
+// Show the next slide
+function nextSlide() {
+  currentIndex = (currentIndex + 1) % totalSlides;
+  showSlide(currentIndex);
+}
 
-const prevSlide = () => {
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  showSlide(currentSlide);
-};
+// Show the previous slide
+function prevSlide() {
+  currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+  showSlide(currentIndex);
+}
 
-document.getElementById('next-slide-btn').addEventListener('click', nextSlide);
-document.getElementById('prev-slide-btn').addEventListener('click', prevSlide);
+nextSlideBtn.addEventListener('click', nextSlide);
+prevSlideBtn.addEventListener('click', prevSlide);
 
 // Initialize the first slide
-showSlide(currentSlide);
+showSlide(currentIndex);
